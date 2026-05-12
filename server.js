@@ -33,8 +33,10 @@ app.use(errorHandler);
 
 // ✅ Necessário para a Vercel conseguir iniciar o servidor
 const PORTA = process.env.PORT || 3000;
-app.listen(PORTA, () => {
-    console.log(`🚀 Servidor rodando na porta https://localhost:${PORTA}`);
-});
+if (!process.env.VERCEL) {
+    app.listen(PORTA, () => {
+        console.log(`🚀 Servidor rodando na porta https://localhost:${PORTA}`);
+    });
+}
 
 module.exports = app;
